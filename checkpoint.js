@@ -42,7 +42,6 @@ var isAncestor = function(genealogyTree, ancestor, descendant){
 
 }
 
-
 // EJERCICIO 2
 // Secuencia inventada: f(n) = f(n-1) x f(n-2) - f(n-2)
 // Siendo f, secuenciaHenry.
@@ -54,7 +53,7 @@ var isAncestor = function(genealogyTree, ancestor, descendant){
 // Por ejemplo si recibimos: 
 // var obj = {
 //   1: true,
-//   first: 2,
+// 3*  first: 2,
 //   7: ['F','r','a','n','c','o!'],
 //   h: {a: 1},
 //   z: [],
@@ -63,8 +62,8 @@ var isAncestor = function(genealogyTree, ancestor, descendant){
 //   c: 3,
 //   d: 4
 // }
-// deberíamos tener los siguientes 2 valores iniciales
-// secuenciaHenry(0) = 2 y secuenciaHenry(1) = 9
+// 1*  deberíamos tener los siguientes 2 valores iniciales
+// 1*  secuenciaHenry(0) = 2 y secuenciaHenry(1) = 9
 // A partir de ahí la tercera posición sería  9 x 2 - 2 = 16 y así sucesivamente
 // La función secuenciaHenry debe devolver el enésimo numero de la serie, por ejemplo para el objeto
 // antes mencionado:
@@ -72,13 +71,21 @@ var isAncestor = function(genealogyTree, ancestor, descendant){
 // secuenciaHenry(0) // 2  ya que el elemento de la posición 0 es cero
 // secuenciaHenry(1) // 9 ya que el elemento de la posición 1 es 1
 // secuenciaHenry(5) // 289305 ya que el elemento de la posición 5 es 289305
-// Para números negativos de n debe devolver null
+// 3*  Para números negativos de n debe devolver null
 // PISTA: Pueden utilizar el método Object.keys() para f(1)
 
 function secuenciaHenry(obj, n) {
   // Tu código aca:
+//  var secuenciaHenry = [2,9,...]; // 1 * index 0 = 2 y index 1 = 9
 
+if (n === 0) return obj.first; // 2* 2 está en la posición 0 y asignamos first
+if (n < 0) return null;         // 3* Listo se devuelve null al dar numero negativo
+if (n === 1) return Object.keys(obj).length;
+//return n= (secuenciaHenry(obj, n - 1) * secuenciaHenry(obj, n - 2) - secuenciaHenry(obj, n - 1));
+return  (secuenciaHenry (obj, n -1) * secuenciaHenry (obj, n -2) - secuenciaHenry(obj, n -2));
 }
+//f(n-1) x f(n-2) - f(n-2)=   f(n) 
+// ((2   *    9)=   18 - 2)   = 16 --> ((9*16)= 144 -9)= 135 ---> ((16*135)= 2160-16)= 2144...... 
 
 // ---------------------
 
@@ -98,8 +105,19 @@ function secuenciaHenry(obj, n) {
 
 LinkedList.prototype.size = function(){
   // Tu código aca:
-
+  var lista = 0;
+  if (this.head === null) {
+    return 0;                     //lista Vacia retorno 0
+  } else {
+    var newLista = this.head;
+    while (newLista.next) {
+      lista = lista + 1;
+      newLista = newLista.next;
+    }
+    return (lista + 1);
+  }
 }
+
 
 
 // EJERCICIO 4
@@ -136,6 +154,21 @@ LinkedList.prototype.switchPos = function(pos1, pos2){
 var mergeLinkedLists = function(linkedListOne, linkedListTwo){
   // Tu código aca:
 
+  var actual1 = linkedListOne.head;
+  var actual2 = linkedListTwo.head;
+
+  var lista = new LinkedList();
+
+    while (actual1 != null && actual2 != null) { 
+     
+      lista.add(actual1.value);
+      lista.add(actual2.value);
+    
+      actual1 = actual1.next;
+      actual2 = actual2.next;
+    
+    } return lista;
+    
 }
 
 
