@@ -353,7 +353,18 @@ var specialSort = function(array, orderFunction) {
 
 function closureDetect(symptoms, min) {
   // Tu código aca:
-
+  return function (person) {
+    var cantSintomas = 0;
+  
+    for (var i = 0; i < symptoms.length; i++) {
+      if (symptoms.includes(person.symptoms[i])) {
+        cantSintomas++;
+      }
+    }
+    if (cantSintomas >= min) return true;
+  //if (castSintomas <= min) 
+  return false;
+  }
  
 }
 // -------------------
