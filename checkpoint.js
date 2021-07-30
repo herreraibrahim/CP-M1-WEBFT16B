@@ -240,7 +240,23 @@ var cardGame = function(playerOneCards, playerTwoCards){
 
 BinarySearchTree.prototype.height = function(){
   // Tu código aca:
+  if (!this.value) {
+    return 0;
+  }
+       if (this.left === null && this.right === null) {
+          return 1;
+  }
+      if (this.right === null) {
+          return 1 + this.left.height();
+  }
+      if (this.left === null) {
+        return 1 + this.right.height();
+      }
 
+          var right = this.right.height()
+          var left = this.left.height()
+  
+      return 1 + Math.max(right, left)
 }
 
 
@@ -337,7 +353,7 @@ var specialSort = function(array, orderFunction) {
 
 function closureDetect(symptoms, min) {
   // Tu código aca:
- 
+
  
 }
 // -------------------
