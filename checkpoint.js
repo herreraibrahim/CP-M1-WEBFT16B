@@ -290,8 +290,22 @@ var binarySearch = function (array, target) {
 
 var specialSort = function(array, orderFunction) {
   // Tu código aca:
+  let element = true;
 
-}
+  while (element) {
+    element = false;
+    for (let i = 0; i < array.length - 1; i++) {
+      if (orderFunction(array[i], array[i + 1]) === -1) {
+        let pos = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = pos;
+        element = true;
+      }
+    }
+  }
+  return array;
+};
+
 
 // ----- Closures -----
 
@@ -323,9 +337,9 @@ var specialSort = function(array, orderFunction) {
 
 function closureDetect(symptoms, min) {
   // Tu código aca:
-
+ 
+ 
 }
-
 // -------------------
 
 module.exports = {
